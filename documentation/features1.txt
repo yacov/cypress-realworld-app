@@ -1,0 +1,84 @@
+Feature: Account Management
+
+Scenario: User registration
+  Given the user is on the Sign-Up page
+  When the user enters a valid username and password
+  And the user submits the registration form
+  Then the user should be directed to the login page
+
+Scenario: User login
+  Given the user is on the Sign-In page
+  When the user enters a valid username and password
+  And the user submits the login form
+  Then the user should be directed to the main dashboard
+
+Scenario: User logout
+  Given the user is logged in
+  When the user clicks on the logout button
+  Then the user should be directed to the Sign-In page
+
+Feature: Bank Account Handling
+
+Scenario: Add a bank account
+  Given the user is logged in
+  And the user is on the Bank Accounts View
+  When the user enters valid bank account details
+  And the user submits the form
+  Then the bank account should be added to the user's account
+
+Scenario: Delete a bank account
+  Given the user is logged in
+  And the user has at least one bank account added
+  When the user requests to delete a bank account
+  Then the bank account should be marked as deleted
+
+Feature: Payment Transactions
+
+Scenario: Send payment to a user
+  Given the user is logged in
+  And the user is on the New Transaction page
+  When the user selects a recipient
+  And the user enters a valid payment amount
+  And the user submits the payment
+  Then the payment should be sent to the selected user
+
+Scenario: Receive payment from a user
+  Given the user is logged in
+  And the user has received a payment
+  When the user checks their transaction feed
+  Then the received payment should be visible
+
+Scenario: Request payment from a user
+  Given the user is logged in
+  And the user is on the New Transaction page
+  When the user selects a recipient
+  And the user enters a valid request amount
+  And the user submits the request
+  Then the payment request should be sent to the selected user
+
+Feature: Transaction Interaction
+
+Scenario: Like a transaction
+  Given the user is logged in
+  And the user views a transaction
+  When the user clicks on the like button
+  Then the like should be recorded for the transaction
+
+Scenario: Comment on a transaction
+  Given the user is logged in
+  And the user views a transaction
+  When the user submits a comment
+  Then the comment should be posted on the transaction
+
+Feature: Notifications
+
+Scenario: Receive a transaction notification
+  Given the user is involved in a transaction
+  When the transaction occurs
+  Then the user should receive a notification
+
+Scenario: Mark notification as read
+  Given the user is logged in
+  And the user has unread notifications
+  When the user marks a notification as read
+  Then the notification should no longer appear as new

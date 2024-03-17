@@ -1,0 +1,42 @@
+# Pay App
+## Transaction Feed
+### Everyone (public)
+- Date Range
+- Amount Range
+### Friends (contacts)
+- Date Range
+- Amount Range
+### Mine (personal)
+- Date Range
+- Amount Range
+## Transaction View
+- Like a transaction
+  - Send notification to transaction participants
+- Comment on a transaction
+  - Send notification to transaction participants
+- Transactions Requests
+  - Accept a request
+  - Deny a request
+## New Transaction
+- Select a User
+- Request Payment
+  - Send notification to request receiver
+  - Redirect to Transaction Feed
+- Send Payment
+  - Send notification to payment receiver
+  - Update account balance
+## Bank Accounts View
+- Add a Bank Account
+  - Redirect to Bank Accounts View
+- Delete a Bank Account
+  - Soft delete Bank Account
+## Notifications View
+- Mark notification as read
+  - Update notification counter badge
+## User Settings
+- Update User settings
+## Login View
+## Logout
+- Redirect to Login View
+## Signup View
+- Direct to Login

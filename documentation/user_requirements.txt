@@ -1,0 +1,14 @@
+User Requirements:
+
+Users can create a new account with a username and password.
+Users can log in and log out of their accounts.
+Users can add and delete a bank account to/from their profile.
+Users can send and receive payments to/from other users.
+Users can request payments from other users.
+Users can view transaction feeds public, friends, and personal.
+Users can filter transaction feeds by amount and date range.
+Users can interact with transactions by liking or commenting.
+Users can accept or deny transaction requests.
+Users can update their user settings.
+Users should receive notifications for transaction-related activities.
+Users can view notifications and mark them as read.

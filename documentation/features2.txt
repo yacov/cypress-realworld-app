@@ -1,0 +1,80 @@
+Feature: Transaction Feed
+  As a user
+  I want to view transaction feeds filtered by different categories such as everyone, friends, and personal
+  In order to see relevant financial activities
+
+  Scenario: View public transaction feed
+    Given the user is logged in
+    When the user selects the "Everyone" filter on the transaction feed
+    Then the user should see transactions from all users
+
+  Scenario: View friends' transaction feed
+    Given the user is logged in
+    When the user selects the "Friends" filter on the transaction feed
+    Then the user should see transactions only from friends
+
+  Scenario: View personal transaction feed
+    Given the user is logged in
+    When the user selects the "Mine" filter on the transaction feed
+    Then the user should see only their personal transactions
+
+Feature: Transaction Interactions
+  As a user
+  I want to like and comment on transactions
+  In order to interact with the transaction feed socially
+
+  Scenario: Like a transaction
+    Given the user is logged in and viewing a transaction
+    When the user clicks the like button on a transaction
+    Then the transaction should be marked as liked by the user
+
+  Scenario: Comment on a transaction
+    Given the user is logged in and viewing a transaction
+    When the user submits a comment on a transaction
+    Then the comment should be visible under the transaction
+
+Feature: Transaction Management
+  As a user
+  I want to request and send payments to other users
+  In order to manage my financial transactions within the app
+
+  Scenario: Request a payment from another user
+    Given the user is logged in
+    When the user requests a payment from another user
+    Then the other user should receive a payment request notification
+
+  Scenario: Send a payment to another user
+    Given the user is logged in
+    When the user sends a payment to another user
+    Then the other user should receive a payment notification
+    And the user's account balance should be updated
+
+Feature: Bank Account Management
+  As a user
+  I need to add and delete bank accounts in my profile
+  In order to facilitate funding of transactions
+
+  Scenario: Add a bank account
+    Given the user is logged in and on the Bank Accounts View
+    When the user adds a new bank account with valid details
+    Then the bank account should be listed in the user's profile
+
+  Scenario: Delete a bank account
+    Given the user is logged in and has at least one bank account added
+    When the user deletes a bank account
+    Then the bank account should no longer be listed in the user's profile
+
+Feature: Notification System
+  As a user
+  I need to be notified of activities related to my transactions
+  In order to keep track of my financial activities within the app
+
+  Scenario: Receive notifications for transaction activities
+    Given the user is involved in a transaction
+    When the transaction is completed
+    Then the user should receive a notification
+
+  Scenario: Mark notifications as read
+    Given the user has unread notifications
+    When the user marks a notification as read
+    Then the notification should no longer appear as new
