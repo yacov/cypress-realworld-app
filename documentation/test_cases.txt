@@ -1,0 +1,48 @@
+# Test Cases in Gherkin Format
+
+## Feature: Transaction Feeds
+# Reference: @transaction-feeds.spec.ts, Feature: Transaction listing and management
+
+Scenario: User views their recent transactions
+  Given the user has logged into their account
+  And the user has existing transactions
+  When the user navigates to the transaction feed page
+  Then the user should see a list of their recent transactions
+
+## Feature: Bank Account Management
+# Reference: @bankaccounts.spec.ts, Feature: User can add, edit, and remove bank accounts
+
+Scenario: User adds a new bank account
+  Given the user is on the Bank Accounts page
+  When the user clicks on "Add Bank Account"
+  And the user fills in the bank account details
+  And the user submits the form
+  Then the new bank account should be added to their list of bank accounts
+
+## Feature: Transaction Interactions
+# Reference: @new-transaction.spec.ts, Feature: User can initiate and complete a new transaction
+
+Scenario: User initiates a new transaction
+  Given the user has at least one bank account linked
+  When the user clicks on "New Transaction"
+  And the user selects a recipient
+  And the user enters the transaction amount
+  And the user confirms the transaction
+  Then the transaction should be initiated
+
+## Feature: Notification System
+# Reference: @notifications.spec.ts, Feature: User receives notifications for important account activities
+
+Scenario: User receives a notification for a received transaction
+  Given the user has notifications enabled
+  When the user receives a new transaction
+  Then the user should receive a notification about the new transaction
+
+## Feature: User Settings Management
+# Reference: @user-settings.spec.ts, Feature: User can update their profile and settings
+
+Scenario: User updates their profile information
+  Given the user is on the User Settings page
+  When the user updates their profile information
+  And the user saves the changes
+  Then the user's profile information should be updated

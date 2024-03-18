@@ -1,0 +1,61 @@
+1. Environment Setup: Ensure Cypress is installed and configured for the project. Include necessary plugins like @percy/cypress for visual testing if needed.
+2. Support Commands: Utilize custom commands defined in commands.ts for common actions like login, logout, creating transactions, and navigating through the app. This will help in reducing code redundancy and improving test readability.
+   Example: 
+   ```
+   // commands.ts
+   Cypress.Commands.add('loginByXstate', (user) => {
+     // Implementation details
+   });
+   ```
+3. Data Preparation: Use the cy.task command to interact with the database for seeding or cleaning up data before each test. This ensures a consistent state for test execution.
+   Example:
+   ```
+   // In your test
+   cy.task('seedDatabase', { users: 10, transactions: 50 });
+   ```
+4. API Interception: Implement API call interception for critical workflows to mock or wait for responses, ensuring tests handle asynchronous operations effectively.
+   Example:
+   ```
+   // In your test
+   cy.intercept('POST', '/api/transactions', { statusCode: 200, body: 'it works!' }).as('createTransaction');
+   cy.wait('@createTransaction');
+   ```
+5. Expanded Test Scenarios: Cover a wide range of functionalities and edge cases in tests, including form validations, delete operations, and empty states.
+6. Visual Regression Testing: Incorporate visual regression tests using tools like @percy/cypress to catch UI regressions.
+7. Shared Context and Setup: Use a shared context or detailed beforeEach hooks for centralized test setup, reducing repetitive code and ensuring a consistent test environment.
+8. Mobile Testing: Include considerations for different viewport sizes and mobile-specific scenarios in tests to ensure comprehensive coverage across devices.
+
+Test Case Implementation Guide
+Feature: Transaction Feeds
+File: transaction-feeds.spec.ts
+Scenario: User views their recent transactions
+Given steps: Use cy.loginByXstate with a predefined user to simulate logging into the account.
+And steps: Seed the database with transactions for the logged-in user.
+When steps: Navigate to the transaction feed page using cy.visit('/path/to/transaction/feed').
+Then steps: Assert that the list of transactions is visible using cy.getBySel('transaction-list').should('be.visible').
+Feature: Bank Account Management
+File: bankaccounts.spec.ts
+Scenario: User adds a new bank account
+Follow the general setup for login.
+Navigate to the Bank Accounts page.
+Interact with the form to add a new bank account using cy.getBySel for form fields and submit the form.
+Assert the addition by checking the list of bank accounts for the new entry.
+Feature: Transaction Interactions
+File: new-transaction.spec.ts
+Scenario: User initiates a new transaction
+After login, ensure at least one bank account is linked.
+Use cy.getBySelLike('new-transaction').click() to initiate a new transaction.
+Fill in the transaction details and submit.
+Verify the transaction initiation by checking for a success message or the presence of the transaction in the transaction list.
+Feature: Notification System
+File: notifications.spec.ts
+Scenario: User receives a notification for a received transaction
+Ensure notifications are enabled for the user.
+Simulate receiving a new transaction, possibly by using a backend task or creating a transaction from another test user.
+Assert that the notification is received by checking the notifications list for the new transaction notification.
+Feature: User Settings Management
+File: user-settings.spec.ts
+Scenario: User updates their profile information
+Login and navigate to the User Settings page.
+Update profile information fields and save changes.
+Assert that the user's profile information is updated by checking the displayed information on the profile or settings page.
